@@ -24,6 +24,12 @@ def guess_is_valid(candidate):
             return False
     return True
 
+def lose_message(word):
+
+    print(f"Sorry, you lost! Correct word: {word}")
+    print("=============================")
+    print("= Sorry, you lost! =")
+    print("=============================")
 
 guessed = 0
 errors = 0
@@ -59,5 +65,8 @@ while not is_game_over():
             print(f"That's right! {WORDS_TO_WIN - guessed} to go")
         else:
             errors += 1
+            if errors == ERRORS_TO_LOSE:
+                lose_message(word)
+                exit()
             print(f"Oops :( No such word, you have {ERRORS_TO_LOSE - errors} lives more")
             incorrect_words.append(guess)
